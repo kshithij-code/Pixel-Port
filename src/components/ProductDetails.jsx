@@ -9,6 +9,7 @@ import {
   Badge,
   Card,
   Accordion,
+  Spinner,
 } from "react-bootstrap";
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 // import { useCart } from "./CartContext";
@@ -58,7 +59,12 @@ function ProductDetails() {
     );
   };
 
-  if (!product) return <Container className="mt-4">Loading...</Container>;
+  if (!product)
+    return (
+      <Container className="mt-4">
+        <Spinner animation="border" variant="primary" />
+      </Container>
+    );
 
   const uniqueImages = product.images.filter(
     (img) => img !== product.thumbnail

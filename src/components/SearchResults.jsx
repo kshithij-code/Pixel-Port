@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import ProductCard from "./ProductCard";
 import { Container, Row, Col } from "react-bootstrap";
@@ -7,6 +7,7 @@ import { Container, Row, Col } from "react-bootstrap";
 function SearchResults() {
   const { product } = useParams();
   const [results, setResults] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchSearchResults = async () => {
@@ -23,13 +24,21 @@ function SearchResults() {
     fetchSearchResults();
   }, [product]);
 
+  const handleCardClick = (id) => {
+    navigate(`/product/${id}`);
+  };
+
   return (
     <Container className="mt-4">
       <h4 className="mb-4">Searched for "{product}"</h4>
 
       <Row xs={1} sm={2} md={3} lg={4} className="g-4">
         {results.map((product) => (
-          <Col key={product.id}>
+          <Col
+            key={product.id}
+            onClick={() => handleCardClick(product.id)}
+            style={{ cursor: "pointer" }}
+          >
             <ProductCard product={product} />
           </Col>
         ))}

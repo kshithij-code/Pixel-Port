@@ -1,8 +1,10 @@
 import { Button } from "react-bootstrap";
 import { useCart } from "../context/CartContext";
+import { useState } from "react";
 
 function AddToCartControls({ productId }) {
   const { cart, dispatch } = useCart();
+  const [showRemoveConfirm, setShowRemoveConfirm] = useState(false);
 
   const item = cart.find((i) => i.id === productId);
   const quantity = item?.quantity || 0;
@@ -12,15 +14,21 @@ function AddToCartControls({ productId }) {
   };
 
   const handleIncrement = () => {
+    setShowRemoveConfirm(false);
     dispatch({ type: "INCREMENT_ITEM", payload: productId });
   };
 
   const handleDecrement = () => {
     if (quantity === 1) {
-      dispatch({ type: "REMOVE_ITEM", payload: productId });
+      setShowRemoveConfirm(true);
     } else {
       dispatch({ type: "DECREMENT_ITEM", payload: productId });
     }
+  };
+
+  const confirmRemove = () => {
+    dispatch({ type: "REMOVE_ITEM", payload: productId });
+    setShowRemoveConfirm(false);
   };
 
   return (
@@ -28,6 +36,10 @@ function AddToCartControls({ productId }) {
       {quantity === 0 ? (
         <Button variant="primary" onClick={handleAdd}>
           Add to Cart
+        </Button>
+      ) : showRemoveConfirm ? (
+        <Button variant="danger" onClick={confirmRemove}>
+          Remove
         </Button>
       ) : (
         <div className="d-flex align-items-center">

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import TestProductCard from "./TestProductCard";
 import ProductCard from "./ProductCard";
+import { Container, Row, Col } from "react-bootstrap";
 
 function SearchResults() {
   const { product } = useParams();
@@ -21,16 +21,20 @@ function SearchResults() {
       }
     };
     fetchSearchResults();
-    console.log(results);
   }, [product]);
 
   return (
-    <div>
-      <h4>Searched for "{product}"</h4>
-      {results.map((product) => (
-        <ProductCard key={product.id} product={product} />
-      ))}
-    </div>
+    <Container className="mt-4">
+      <h4 className="mb-4">Searched for "{product}"</h4>
+
+      <Row xs={1} sm={2} md={3} lg={4} className="g-4">
+        {results.map((product) => (
+          <Col key={product.id}>
+            <ProductCard product={product} />
+          </Col>
+        ))}
+      </Row>
+    </Container>
   );
 }
 

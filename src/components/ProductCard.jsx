@@ -1,6 +1,7 @@
 import Card from "react-bootstrap/Card";
 import Badge from "react-bootstrap/Badge";
 import { FaStar } from "react-icons/fa";
+import "./ProductCard.css";
 
 function ProductCard({ product }) {
   const {

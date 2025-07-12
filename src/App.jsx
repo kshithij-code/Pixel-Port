@@ -11,6 +11,7 @@ import { useState } from "react";
 import Cart from "./components/Cart";
 import Home from "./components/Home";
 import SearchResults from "./components/SearchResults"; // new page
+import ProductDetails from "./components/ProductDetails";
 
 function App() {
   const [search, setSearch] = useState("");
@@ -64,6 +65,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/search/:product" element={<SearchResults />} />
+          <Route path="/product/:id" element={<ProductDetails />} />
         </Routes>
       </Container>
     </div>

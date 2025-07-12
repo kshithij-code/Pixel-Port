@@ -15,10 +15,13 @@ import SearchResults from "./components/SearchResults"; // new page
 import ProductDetails from "./components/ProductDetails";
 import CheckoutPage from "./components/CheckoutPage";
 import { useCart } from "./context/CartContext";
+import { useTheme } from "./context/ThemeContext";
 
 function App() {
+  const { darkMode, toggleTheme } = useTheme();
   const { cart } = useCart();
   const [search, setSearch] = useState("");
+
   const navigate = useNavigate();
 
   const handleSearch = (e) => {
@@ -32,8 +35,13 @@ function App() {
 
   return (
     <div>
-      <Navbar bg="primary" variant="dark" expand="lg" className="px-3">
-        <Navbar.Brand as={NavLink} to="/">
+      {/* Adjust navbar color based on theme */}
+      <Navbar
+        bg={darkMode ? "light" : "primary"}
+        variant={darkMode ? "light" : "primary"}
+        className="px-3"
+      >
+        <Navbar.Brand className={darkMode ? "text-dark" : "text-light"}>
           Pixel Port
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -52,7 +60,7 @@ function App() {
           </Form>
 
           <Nav className="ms-auto align-items-center">
-            <Nav.Link as={NavLink} to="/" end>
+            <Nav.Link className={darkMode ? "text-dark" : "text-light"}>
               Home
             </Nav.Link>
             <Nav.Link as={NavLink} to="/cart" end className="position-relative">
@@ -67,10 +75,15 @@ function App() {
               )}
             </Nav.Link>
             <Button
-              variant="outline-light"
+              onClick={toggleTheme}
+              variant={darkMode ? "outline-dark" : "outline-light"}
               className="ms-3 d-flex align-items-center"
             >
-              <FaSun className="me-1" /> / <FaMoon className="ms-1" />
+              {darkMode ? (
+                <FaMoon className="ms-1" />
+              ) : (
+                <FaSun className="me-1" />
+              )}
             </Button>
           </Nav>
         </Navbar.Collapse>

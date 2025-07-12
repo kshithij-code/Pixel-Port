@@ -41,7 +41,11 @@ function App() {
         variant={darkMode ? "light" : "primary"}
         className="px-3"
       >
-        <Navbar.Brand className={darkMode ? "text-dark" : "text-light"}>
+        <Navbar.Brand
+          className={darkMode ? "text-dark" : "text-light"}
+          as={NavLink}
+          to="/"
+        >
           Pixel Port
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

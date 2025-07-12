@@ -9,14 +9,16 @@ import {
   Badge,
   Card,
   Accordion,
-  Button,
 } from "react-bootstrap";
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
+// import { useCart } from "./CartContext";
+import AddToCartControls from "./AddToCartControls";
 
 function ProductDetails() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [activeImage, setActiveImage] = useState("");
+  //   const { cart } = useCart();
 
   useEffect(() => {
     const fetchDetails = async () => {
@@ -58,7 +60,6 @@ function ProductDetails() {
 
   if (!product) return <Container className="mt-4">Loading...</Container>;
 
-  // Use only non-thumbnail images
   const uniqueImages = product.images.filter(
     (img) => img !== product.thumbnail
   );
@@ -66,7 +67,6 @@ function ProductDetails() {
   return (
     <Container className="mt-4">
       <Row>
-        {/* Left Column: Enlarged Image with Thumbnails */}
         <Col md={5}>
           <div style={{ float: "left" }}>
             <Image
@@ -106,7 +106,6 @@ function ProductDetails() {
           </div>
         </Col>
 
-        {/* Right Column: Product Details */}
         <Col md={7}>
           <h2 className="mb-1">{product.title}</h2>
           <p className="text-muted mb-1">
@@ -124,7 +123,7 @@ function ProductDetails() {
                 {product.discountPercentage}% OFF
               </span>
             </h4>
-            <Button variant="primary">Add to Cart</Button>
+            <AddToCartControls productId={product.id} />
           </div>
 
           <p className="mb-1">
@@ -190,7 +189,6 @@ function ProductDetails() {
         </Col>
       </Row>
 
-      {/* Reviews */}
       <Row className="mt-5">
         <h4>Customer Reviews</h4>
         {product.reviews.length === 0 && <p>No reviews yet.</p>}

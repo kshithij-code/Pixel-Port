@@ -12,14 +12,14 @@ import {
   Spinner,
 } from "react-bootstrap";
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
-// import { useCart } from "./CartContext";
 import AddToCartControls from "./AddToCartControls";
+import { useTheme } from "../context/ThemeContext";
 
 function ProductDetails() {
+  const { darkMode } = useTheme();
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [activeImage, setActiveImage] = useState("");
-  //   const { cart } = useCart();
 
   useEffect(() => {
     const fetchDetails = async () => {
@@ -114,10 +114,10 @@ function ProductDetails() {
 
         <Col md={7}>
           <h2 className="mb-1">{product.title}</h2>
-          <p className="text-muted mb-1">
+          <p className={` mb-1 ${darkMode ? "text-light" : "text-primary"}`}>
             Brand: <strong>{product.brand}</strong>
           </p>
-          <p className="text-muted mb-1">
+          <p className={` mb-1 ${darkMode ? "text-light" : "text-primary"}`}>
             Category: <strong>{product.category}</strong>
           </p>
           <div className="mb-2">{renderStars(product.rating)}</div>
@@ -177,7 +177,11 @@ function ProductDetails() {
           <h5 className="mt-3">Return Policy</h5>
           <p>{product.returnPolicy}</p>
 
-          <Card className="p-3 mt-4">
+          <Card
+            className={`p-3 mt-4 ${
+              darkMode ? "bg-light text-dark" : "bg-dark text-light"
+            }`}
+          >
             <h6>Physical Specs</h6>
             <p className="mb-1">
               <strong>Weight:</strong> {product.weight} kg
@@ -198,7 +202,9 @@ function ProductDetails() {
       <Row className="mt-5">
         <h4>Customer Reviews</h4>
         {product.reviews.length === 0 && <p>No reviews yet.</p>}
-        <Accordion>
+        <Accordion
+          className={darkMode ? "bg-light text-dark" : "bg-dark text-light"}
+        >
           {product.reviews.map((review, index) => (
             <Accordion.Item eventKey={index.toString()} key={index}>
               <Accordion.Header>

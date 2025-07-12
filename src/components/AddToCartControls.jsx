@@ -1,8 +1,10 @@
 import { Button } from "react-bootstrap";
 import { useCart } from "../context/CartContext";
 import { useState } from "react";
+import { useTheme } from "../context/ThemeContext";
 
 function AddToCartControls({ productId }) {
+  const { darkMode } = useTheme();
   const { cart, dispatch } = useCart();
   const [showRemoveConfirm, setShowRemoveConfirm] = useState(false);
 
@@ -34,7 +36,7 @@ function AddToCartControls({ productId }) {
   return (
     <>
       {quantity === 0 ? (
-        <Button variant="primary" onClick={handleAdd}>
+        <Button variant={darkMode ? "light" : "primary"} onClick={handleAdd}>
           Add to Cart
         </Button>
       ) : showRemoveConfirm ? (
@@ -45,7 +47,7 @@ function AddToCartControls({ productId }) {
         <div className="d-flex align-items-center">
           <Button
             size="sm"
-            variant="outline-secondary"
+            variant={darkMode ? "outline-dark" : "outline-light"}
             onClick={handleDecrement}
           >
             -

@@ -15,7 +15,7 @@ function ProductCard({ product }) {
   } = product;
 
   return (
-    <Card className="mb-3 shadow-sm" style={{ width: "18rem" }}>
+    <Card className="mb-3 shadow-sm w-100" style={{ maxWidth: "18rem" }}>
       <Card.Img
         variant="top"
         src={thumbnail}

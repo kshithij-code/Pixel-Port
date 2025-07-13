@@ -1,12 +1,75 @@
-# React + Vite
+# 🛍️ Pixel Port
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Pixel Port is a responsive e-commerce frontend built with **React**, **React-Bootstrap**, and **React Router DOM**. It demonstrates dynamic product browsing, theming, cart management, and checkout workflows using modern React features like Context API and Hooks.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+- 🔍 **Search Products** – Fetches and displays search results from DummyJSON.
+- 🛒 **Add to Cart** – Add, increment, decrement, and remove items from the cart.
+- 💳 **Checkout Page** – Displays order summary and handles form validation.
+- 🌓 **Theme Toggle** – Switch between light and dark modes globally.
+- 🖼️ **Product Details** – View rich product info, images, reviews, and specs.
+- 🧾 **Cart Summary** – View cart contents with quantity controls and total.
+- 📁 **Category Browsing** – Display products grouped by category on the homepage.
+- 🔁 **Persistent Cart** – Cart items are saved in `localStorage`.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🧱 Built With
+
+- [React](https://reactjs.org/)
+- [React-Bootstrap](https://react-bootstrap.github.io/)
+- [React Router DOM](https://reactrouter.com/)
+- [React Icons](https://react-icons.github.io/react-icons/)
+- [DummyJSON API](https://dummyjson.com/)
+
+---
+
+## 📂 Folder Structure
+
+```
+src/
+├── components/
+│   ├── Banner.jsx
+│   ├── Cart.jsx
+│   ├── CheckoutPage.jsx
+│   ├── ProductCard.jsx
+│   ├── ProductDetails.jsx
+│   ├── Home.jsx
+│   ├── SearchResults.jsx
+│   └── AddToCartButton.jsx
+├── context/
+│   ├── CartContext.jsx
+│   └── ThemeContext.jsx
+├── App.jsx
+└── main.jsx
+```
+
+---
+
+## 🧪 Running Locally
+
+```bash
+npm install
+npm run dev
+```
+
+To expose your app on the local network (for mobile testing):
+
+```bash
+npm run dev
+```
+
+---
+
+## 📌 API Source
+
+This app uses the free [DummyJSON](https://dummyjson.com/) API to simulate a full-featured e-commerce experience.
+
+---
+
+## 🙌 Contributions
+
+Feel free to fork this repo and submit a pull request. Suggestions and improvements are welcome!

@@ -6,22 +6,29 @@ import {
   FormControl,
   Button,
 } from "react-bootstrap";
-import { NavLink, Route, Routes, useNavigate } from "react-router-dom";
+import {
+  NavLink,
+  Route,
+  Routes,
+  useNavigate,
+  useLocation,
+} from "react-router-dom";
 import { useState } from "react";
 import { FaShoppingCart, FaSun, FaMoon } from "react-icons/fa";
 import Cart from "./components/Cart";
 import Home from "./components/Home";
-import SearchResults from "./components/SearchResults"; // new page
+import SearchResults from "./components/SearchResults";
 import ProductDetails from "./components/ProductDetails";
 import CheckoutPage from "./components/CheckoutPage";
 import { useCart } from "./context/CartContext";
 import { useTheme } from "./context/ThemeContext";
 
 function App() {
+  const location = useLocation();
+  const isFullWidthPage = location.pathname === "/";
   const { darkMode, toggleTheme } = useTheme();
   const { cart } = useCart();
   const [search, setSearch] = useState("");
-
   const navigate = useNavigate();
 
   const handleSearch = (e) => {
@@ -35,7 +42,6 @@ function App() {
 
   return (
     <div>
-      {/* Adjust navbar color based on theme */}
       <Navbar
         bg={darkMode ? "light" : "primary"}
         variant={darkMode ? "light" : "primary"}
@@ -93,15 +99,20 @@ function App() {
         </Navbar.Collapse>
       </Navbar>
 
-      <Container className="mt-4">
+      {isFullWidthPage ? (
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/search/:product" element={<SearchResults />} />
-          <Route path="/product/:id" element={<ProductDetails />} />
-          <Route path="/checkout" element={<CheckoutPage />} />
         </Routes>
-      </Container>
+      ) : (
+        <Container className="mt-4">
+          <Routes>
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/search/:product" element={<SearchResults />} />
+            <Route path="/product/:id" element={<ProductDetails />} />
+            <Route path="/checkout" element={<CheckoutPage />} />
+          </Routes>
+        </Container>
+      )}
     </div>
   );
 }

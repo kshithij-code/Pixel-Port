@@ -62,7 +62,7 @@ function SearchResults() {
       </div>
 
       {showFilters && (
-        <div className="mb-3" id="filterOptions">
+        <div className="mb-3 text-primary" id="filterOptions">
           <div className="card card-body">
             <div className="row">
               <div className="col-md-6 mb-3">

@@ -73,3 +73,5 @@ This app uses the free [DummyJSON](https://dummyjson.com/) API to simulate a ful
 ## 🙌 Contributions
 
 Feel free to fork this repo and submit a pull request. Suggestions and improvements are welcome!
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/494bd736-8fe0-4604-88b4-b92c5728fe42/deploy-status)](https://app.netlify.com/projects/pixel-port-v1/deploys)
